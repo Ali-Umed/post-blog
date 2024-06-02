@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { faker } from "@faker-js/faker";
 import { PostProvider, usePosts } from "./PostContext";
 import {} from "../src/style.css";
@@ -125,9 +125,19 @@ function FormAddPost() {
 }
 
 function List() {
-  const { handleSortChange } = usePosts();
-  const { posts } = usePosts();
-  const { sortBy } = usePosts();
+  const { handleSortChange, posts, sortBy } = usePosts();
+
+  const sortedPosts = useMemo(() => {
+    return [...posts].sort((a, b) => {
+      if (sortBy === "name") {
+        return a.title.localeCompare(b.title);
+      } else if (sortBy === "length") {
+        return a.body.length - b.body.length;
+      } else {
+        return 0;
+      }
+    });
+  }, [posts, sortBy]);
 
   return (
     <>
@@ -145,7 +155,7 @@ function List() {
         </select>
       </div>
       <ul>
-        {posts.map((post, i) => (
+        {sortedPosts.map((post, i) => (
           <li key={i} style={{ position: "relative" }}>
             <h3>{post.title}</h3>
             <p>{post.body}</p>
@@ -169,7 +179,6 @@ function List() {
     </>
   );
 }
-
 function Archive() {
   const { onAddPost } = usePosts();
 

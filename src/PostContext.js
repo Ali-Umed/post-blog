@@ -17,31 +17,19 @@ function PostProvider({ children }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("default");
 
-  const sortedPost = useMemo(() => {
-    return [...posts].sort((a, b) => {
-      if (sortBy === "name") {
-        return a.title.localeCompare(b.title);
-      } else if (sortBy === "length") {
-        return a.body.length - b.body.length;
-      } else {
-        return 0;
-      }
-    });
-  }, [posts, sortBy]);
-
   function handleSortChange(event) {
     setSortBy(event.target.value);
   }
 
   const searchedPosts = useMemo(() => {
     return searchQuery.length > 0
-      ? sortedPost.filter((post) =>
+      ? posts.filter((post) =>
           `${post.title} ${post.body}`
             .toLowerCase()
             .includes(searchQuery.toLowerCase())
         )
-      : sortedPost;
-  }, [sortedPost, searchQuery]);
+      : posts;
+  }, [posts, searchQuery]);
 
   function handleAddPost(post) {
     setPosts((posts) => [post, ...posts]);

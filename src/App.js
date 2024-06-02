@@ -125,9 +125,8 @@ function FormAddPost() {
 }
 
 function List() {
-  const { posts } = usePosts();
   const { handleSortChange } = usePosts();
-  const { sortedPost } = usePosts();
+  const { posts } = usePosts();
   const { sortBy } = usePosts();
 
   return (
@@ -146,7 +145,7 @@ function List() {
         </select>
       </div>
       <ul>
-        {sortedPost.map((post, i) => (
+        {posts.map((post, i) => (
           <li key={i} style={{ position: "relative" }}>
             <h3>{post.title}</h3>
             <p>{post.body}</p>

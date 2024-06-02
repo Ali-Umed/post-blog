@@ -17,26 +17,31 @@ function PostProvider({ children }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("default");
 
-  const sortedPost = [...posts].sort((a, b) =>
-    sortBy === "name"
-      ? a.title.localeCompare(b.title)
-      : sortBy === "length"
-      ? a.body.length - b.body.length
-      : posts
-  );
+  const sortedPost = useMemo(() => {
+    return [...posts].sort((a, b) => {
+      if (sortBy === "name") {
+        return a.title.localeCompare(b.title);
+      } else if (sortBy === "length") {
+        return a.body.length - b.body.length;
+      } else {
+        return 0;
+      }
+    });
+  }, [posts, sortBy]);
 
   function handleSortChange(event) {
     setSortBy(event.target.value);
   }
 
-  const searchedPosts =
-    searchQuery.length > 0
-      ? posts.filter((post) =>
+  const searchedPosts = useMemo(() => {
+    return searchQuery.length > 0
+      ? sortedPost.filter((post) =>
           `${post.title} ${post.body}`
             .toLowerCase()
             .includes(searchQuery.toLowerCase())
         )
-      : posts;
+      : sortedPost;
+  }, [sortedPost, searchQuery]);
 
   function handleAddPost(post) {
     setPosts((posts) => [post, ...posts]);
@@ -54,11 +59,10 @@ function PostProvider({ children }) {
       searchQuery,
       setSearchQuery,
       handleSortChange,
-      sortedPost,
       sortBy,
       setSortBy,
     };
-  }, [searchedPosts, searchQuery, sortedPost, sortBy]);
+  }, [searchedPosts, searchQuery, sortBy]);
 
   return <PostContext.Provider value={value}>{children}</PostContext.Provider>;
 }

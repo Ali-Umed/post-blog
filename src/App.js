@@ -2,6 +2,8 @@ import { memo, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 import { PostProvider, usePosts } from "./PostContext";
 import {} from "../src/style.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 function createRandomPost() {
   return {
@@ -154,9 +156,23 @@ function List() {
       </div>
       <ul>
         {sortedPost.map((post, i) => (
-          <li key={i}>
+          <li key={i} style={{ position: "relative" }}>
             <h3>{post.title}</h3>
             <p>{post.body}</p>
+            <FontAwesomeIcon
+              icon={faHeart}
+              style={{
+                position: "absolute",
+                bottom: 5,
+                right: 5,
+                fontSize: "22px",
+                color: "#000",
+                transition: "color 0.3s",
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => (e.target.style.color = "red")}
+              onMouseLeave={(e) => (e.target.style.color = "#000")}
+            />
           </li>
         ))}
       </ul>
@@ -197,7 +213,7 @@ function Archive() {
 }
 
 function Footer() {
-  return <footer>&copy; by The Atomic Blog ✌️</footer>;
+  return <footer>&copy; by The Blog posts ✌️</footer>;
 }
 
 export default App;

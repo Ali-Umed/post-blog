@@ -4,6 +4,7 @@ import { PostProvider, usePosts } from "./PostContext";
 import {} from "../src/style.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import Footer from "./Footer";
 
 function createRandomPost() {
   return {
@@ -212,8 +213,8 @@ function Archive() {
   );
 }
 
-function Footer() {
-  return <footer>&copy; by The Blog posts ✌️</footer>;
-}
+// function Footer() {
+//   return <footer>&copy; by The Blog posts ✌️</footer>;
+// }
 
 export default App;

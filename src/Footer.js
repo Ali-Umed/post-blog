@@ -72,10 +72,16 @@ export default function Footer() {
                 <span style={{ textAlign: "center" }}>&copy;Blog App 2024</span>
                 <div style={{ display: "flex", gap: "8px" }}>
                   <a
+                    className="a"
                     href="https://github.com/Ali-Umed?tab=overview"
                     target="_blank"
                     aria-label="github"
-                    style={{ color: "inherit" }}
+                    style={{
+                      color: "inherit",
+                      textDecoration: "none",
+                      outline: "none",
+                      borderRadius: "2px",
+                    }}
                     rel="noreferrer"
                   >
                     <svg
@@ -90,10 +96,14 @@ export default function Footer() {
                     </svg>
                   </a>
                   <a
-                    style={{ color: "inherit" }}
+                    style={{
+                      color: "inherit",
+                      textDecoration: "none",
+                      outline: "none",
+                      borderRadius: "2px",
+                    }}
                     href="https://www.linkedin.com/in/ali-umed-076854286/"
                     target="blank"
-                    className="hover:text-cyan-600"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -106,8 +116,12 @@ export default function Footer() {
                     </svg>
                   </a>
                   <a
-                    style={{ color: "inherit" }}
-                    className="hover:text-cyan-600"
+                    style={{
+                      color: "inherit",
+                      textDecoration: "none",
+                      outline: "none",
+                      borderRadius: "2px",
+                    }}
                     href="https://www.facebook.com/ali.umed.376?mibextid=ZbWKwL"
                     target="blank"
                   >
@@ -123,8 +137,12 @@ export default function Footer() {
                   </a>
 
                   <a
-                    style={{ color: "inherit" }}
-                    className="hover:text-cyan-600"
+                    style={{
+                      color: "inherit",
+                      textDecoration: "none",
+                      outline: "none",
+                      borderRadius: "2px",
+                    }}
                     href="https://www.instagram.com/ali.umed99?igsh=dWQ5eThyMGRmM2Ju"
                     target="blank"
                   >
@@ -139,8 +157,12 @@ export default function Footer() {
                     </svg>
                   </a>
                   <a
-                    style={{ color: "inherit" }}
-                    className="hover:text-cyan-600"
+                    style={{
+                      color: "inherit",
+                      textDecoration: "none",
+                      outline: "none",
+                      borderRadius: "2px",
+                    }}
                     href="https://www.youtube.com/@Ali_Umed"
                     target="blank"
                   >

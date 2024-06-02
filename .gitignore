@@ -1,0 +1,11 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore build output
+dist/
+build/
+
+# Ignore specific files in the src directory
+src/App-memo.js
+src/App-v1.js
+

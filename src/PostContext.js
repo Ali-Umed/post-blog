@@ -15,11 +15,6 @@ function PostProvider({ children }) {
     Array.from({ length: 30 }, () => createRandomPost())
   );
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState("default");
-
-  function handleSortChange(event) {
-    setSortBy(event.target.value);
-  }
 
   const searchedPosts = useMemo(() => {
     return searchQuery.length > 0
@@ -46,11 +41,8 @@ function PostProvider({ children }) {
       onClearPosts: handleClearPosts,
       searchQuery,
       setSearchQuery,
-      handleSortChange,
-      sortBy,
-      setSortBy,
     };
-  }, [searchedPosts, searchQuery, sortBy]);
+  }, [searchedPosts, searchQuery]);
 
   return <PostContext.Provider value={value}>{children}</PostContext.Provider>;
 }

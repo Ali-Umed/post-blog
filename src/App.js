@@ -125,7 +125,12 @@ function FormAddPost() {
 }
 
 function List() {
-  const { handleSortChange, posts, sortBy } = usePosts();
+  const { posts } = usePosts();
+  const [sortBy, setSortBy] = useState("default");
+
+  function handleSortChange(event) {
+    setSortBy(event.target.value);
+  }
 
   const sortedPosts = useMemo(() => {
     return [...posts].sort((a, b) => {

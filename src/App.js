@@ -126,19 +126,9 @@ function FormAddPost() {
 
 function List() {
   const { posts } = usePosts();
-  const [sortBy, setSortBy] = useState("default");
-
-  const sortedPost = [...posts].sort((a, b) =>
-    sortBy === "name"
-      ? a.title.localeCompare(b.title)
-      : sortBy === "length"
-      ? a.body.length - b.body.length
-      : posts
-  );
-
-  function handleSortChange(event) {
-    setSortBy(event.target.value);
-  }
+  const { handleSortChange } = usePosts();
+  const { sortedPost } = usePosts();
+  const { sortBy } = usePosts();
 
   return (
     <>
@@ -212,9 +202,5 @@ function Archive() {
     </aside>
   );
 }
-
-// function Footer() {
-//   return <footer>&copy; by The Blog posts ✌️</footer>;
-// }
 
 export default App;

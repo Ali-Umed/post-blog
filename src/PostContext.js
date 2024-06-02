@@ -15,6 +15,19 @@ function PostProvider({ children }) {
     Array.from({ length: 30 }, () => createRandomPost())
   );
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState("default");
+
+  const sortedPost = [...posts].sort((a, b) =>
+    sortBy === "name"
+      ? a.title.localeCompare(b.title)
+      : sortBy === "length"
+      ? a.body.length - b.body.length
+      : posts
+  );
+
+  function handleSortChange(event) {
+    setSortBy(event.target.value);
+  }
 
   const searchedPosts =
     searchQuery.length > 0
@@ -40,8 +53,12 @@ function PostProvider({ children }) {
       onClearPosts: handleClearPosts,
       searchQuery,
       setSearchQuery,
+      handleSortChange,
+      sortedPost,
+      sortBy,
+      setSortBy,
     };
-  }, [searchedPosts, searchQuery]);
+  }, [searchedPosts, searchQuery, sortedPost, sortBy]);
 
   return <PostContext.Provider value={value}>{children}</PostContext.Provider>;
 }
